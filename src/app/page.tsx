@@ -1,95 +1,120 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from './page.module.css';
+
+const data = [
+  {
+    task: 'Задание 1: HTML и CSS',
+    desc: 'Описание: Создайте страницу профиля пользователя, которая содержит следующие элементы:',
+    details: {
+      elements: [
+        'Аватар (изображение)',
+        'Имя пользователя',
+        'Краткая информация о пользователе (биография)',
+        'Контактная информация (email и телефон)',
+      ],
+      requirements: [
+        'Используйте HTML для создания структуры страницы.',
+        'Примените CSS для оформления страницы.',
+        'Убедитесь, что страница выглядит аккуратно и профессионально.',
+        'Страница должна быть адаптивной, корректно отображаться на мобильных устройствах.',
+      ],
+      evaluation_criteria: [
+        'Соответствие HTML семантическим стандартам.',
+        'Чистота и структура CSS.',
+        'Адаптивный дизайн.',
+        'Визуальная привлекательность и удобство использования.',
+      ],
+    },
+  },
+  {
+    task: 'Задание 2: JavaScript',
+    desc: 'Описание: Создайте простое веб-приложение, которое позволяет пользователю вводить список дел (To-Do List). Пользователь должен иметь возможность добавлять, удалять и отмечать задания как выполненные.',
+    details: {
+      requirements: [
+        'Используйте JavaScript для реализации логики приложения.',
+        'Приложение должно быть интерактивным и отзывчивым.',
+        'Добавьте базовую валидацию (например, чтобы пустые задания не могли быть добавлены).',
+      ],
+      evaluation_criteria: [
+        'Корректность работы JavaScript кода.',
+        'Интерактивность и отзывчивость интерфейса.',
+        'Удобство использования.',
+        'Чистота и читаемость кода.',
+      ],
+    },
+  },
+  {
+    task: 'Задание 3: Git',
+    desc: 'Описание: Создайте репозиторий на GitHub и выполните следующие действия:',
+    details: {
+      elements: [
+        'Инициализируйте репозиторий и добавьте файл README.md с описанием проекта.',
+        "Создайте ветку 'develop' и внесите в нее изменения (например, добавьте новый файл или измените существующий).",
+        "Создайте Pull Request (PR) из ветки 'develop' в 'main' и добавьте комментарий, объясняющий сделанные изменения.",
+      ],
+      requirements: [
+        'Корректная работа с ветками.',
+        'Грамотное описание PR и внесенных изменений.',
+        'Понимание основ работы с Git.',
+      ],
+      evaluation_criteria: [
+        'Правильность выполнения всех шагов.',
+        'Чистота и ясность комментариев и описаний.',
+        'Понимание процесса работы с Git.',
+      ],
+    },
+  },
+  {
+    task: 'Задание 4: Интеграция с бекендом',
+    desc: 'Описание: Создайте страницу, которая получает данные о пользователях с публичного API (например, JSONPlaceholder) и отображает их в виде списка. При клике на имя пользователя должна открываться страница с подробной информацией о пользователе.',
+    details: {
+      requirements: [
+        'Используйте fetch API для получения данных.',
+        'Обработайте полученные данные и отобразите их на странице.',
+        'Реализуйте навигацию между списком пользователей и страницей деталей.',
+      ],
+      evaluation_criteria: [
+        'Корректность использования fetch API.',
+        'Правильная обработка и отображение данных.',
+        'Интерактивность и удобство использования интерфейса.',
+      ],
+    },
+  },
+];
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className={styles['home__wrapper']}>
+      <div className={styles['home__intro']}>welcome, to the tech. task zone!</div>
+      <div className={styles['home__tasks']}>
+        {data.map((item, index) => (
+          <div key={index} className={styles['home__task']}>
+            <h2>{item.task}</h2>
+            <p>{item.desc}</p>
+            {item.details.elements && (
+              <>
+                <h3>Элементы:</h3>
+                <ul>
+                  {item.details.elements.map((element, i) => (
+                    <li key={i}>{element}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+            <h3>Требования:</h3>
+            <ul>
+              {item.details.requirements.map((requirement, i) => (
+                <li key={i}>{requirement}</li>
+              ))}
+            </ul>
+            <h3>Критерии оценки:</h3>
+            <ul>
+              {item.details.evaluation_criteria.map((criteria, i) => (
+                <li key={i}>{criteria}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }

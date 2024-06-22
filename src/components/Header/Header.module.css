@@ -1,0 +1,22 @@
+.header__wrapper {
+  padding: 3vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__link-separator {
+  margin: 0 10px;
+  color: gray;
+}
+
+.header__link {
+  font-size: larger;
+  transition: 0.2s ease;
+}
+
+.header__link:hover {
+  color: palevioletred;
+  transition: 0.2s ease;
+}
